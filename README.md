@@ -7,7 +7,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/flipboxfactory/craft-psr16.svg?style=flat-square)](https://scrutinizer-ci.com/g/flipboxfactory/craft-psr16)
 [![Total Downloads](https://img.shields.io/packagist/dt/flipboxfactory/craft-psr16.svg?style=flat-square)](https://packagist.org/packages/flipboxfactory/craft-psr16)
 
-This package provides simple mechanism for PSR-6 Cache via Craft CMS.
+This package provides simple mechanism for PSR-16 Simple Cache via Craft CMS.
 
 ## Installation
 
@@ -35,7 +35,7 @@ Define it as a component in your plugin
 or via your composer as an 'extra' definition
 ```json
 "components": {
-  "psr16cache": "flipbox\\craft\\psr16\\SimpleAdapterCache::class"
+  "psr16cache": "flipbox\\craft\\psr16\\SimpleAdapterCache"
 }
 ```
 
