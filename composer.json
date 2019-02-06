@@ -1,7 +1,7 @@
 {
   "name": "flipboxfactory/craft-psr16",
   "description": "PSR-16 Simple Cache for Craft CMS",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "keywords": [
     "psr-16",
     "psr16",
