@@ -42,8 +42,8 @@ class SimpleCacheAdapter extends Component implements CacheInterface
 
         $this->cache = Instance::ensure(
             $this->cache instanceof \Closure ?
-            call_user_func($this->cache) :
-            $this->cache,
+                call_user_func($this->cache) :
+                $this->cache,
             YiiCacheInterface::class
         );
     }
@@ -64,7 +64,7 @@ class SimpleCacheAdapter extends Component implements CacheInterface
      * @return bool|mixed|null
      * @throws InvalidArgumentException
      */
-    public function get($key, $default = null)
+    public function get(string $key, mixed $default = null): mixed
     {
         $key = $this->buildKey($key);
 
@@ -89,7 +89,7 @@ class SimpleCacheAdapter extends Component implements CacheInterface
      * @return bool
      * @throws InvalidArgumentException
      */
-    public function set($key, $value, $ttl = null, $dependency = null)
+    public function set(string $key, mixed $value, null|int|\DateInterval $ttl = null, $dependency = null): bool
     {
         $key = $this->buildKey($key);
 
@@ -102,7 +102,7 @@ class SimpleCacheAdapter extends Component implements CacheInterface
      * @param string $key
      * @return bool
      */
-    public function delete($key)
+    public function delete(string $key): bool
     {
         $key = $this->buildKey($key);
         return $this->has($key) ? $this->getCache()->delete($key) : true;
@@ -111,7 +111,7 @@ class SimpleCacheAdapter extends Component implements CacheInterface
     /**
      * @return bool
      */
-    public function clear()
+    public function clear(): bool
     {
         return $this->getCache()->flush();
     }
@@ -121,7 +121,7 @@ class SimpleCacheAdapter extends Component implements CacheInterface
      * @param null $default
      * @return array|iterable
      */
-    public function getMultiple($keys, $default = null)
+    public function getMultiple(iterable $keys, mixed $default = null): iterable
     {
         if (!$keys instanceof \Traversable && !is_array($keys)) {
             throw new InvalidArgumentException(
@@ -140,7 +140,7 @@ class SimpleCacheAdapter extends Component implements CacheInterface
      * @param null $ttl
      * @return bool
      */
-    public function setMultiple($values, $ttl = null)
+    public function setMultiple(iterable $values, null|int|\DateInterval $ttl = null): bool
     {
         if (!$values instanceof \Traversable && !is_array($values)) {
             throw new InvalidArgumentException(
@@ -163,7 +163,7 @@ class SimpleCacheAdapter extends Component implements CacheInterface
      * @param iterable $keys
      * @return bool
      */
-    public function deleteMultiple($keys)
+    public function deleteMultiple(iterable $keys): bool
     {
         if ($keys instanceof \Traversable) {
             $keys = iterator_to_array($keys, false);
@@ -185,7 +185,7 @@ class SimpleCacheAdapter extends Component implements CacheInterface
      * @param string $key
      * @return bool
      */
-    public function has($key)
+    public function has(string $key): bool
     {
         $key = $this->buildKey($key);
         return $this->getCache()->exists($key);
